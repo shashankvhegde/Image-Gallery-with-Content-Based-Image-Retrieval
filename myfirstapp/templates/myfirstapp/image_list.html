@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Image Gallery</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{% url 'image_list' %}">Photo Gallery</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="{% url 'image_list' %}">Home</a></li>
+          <li><a href="{% url 'insert_picture' %}">Upload</a></li>
+        </ul>
+        <form class="navbar-form navbar-right" method = "POST" action = "{% url 'image_list' %}">
+        {% csrf_token %}
+          <div class="form-group">
+            <!-- <input type="text" class="form-control" placeholder="Search"> -->
+            {{ form }}
+          </div>
+          <button type="submit" class="btn btn-default">Search</button>
+        </form>
+      </div>
+    </nav>
+    <br>
+    <br>
+    <div class = "ct">
+        <!-- <div class = "main-img">
+            <img src = "./img1.jpg" id="current">
+        </div> -->
+
+        <div class = "imgs">
+<!--             <img src = "./img1.jpg">
+            <img src = "./img2.jpg">
+            <img src = "./img3.jpg">
+            <img src = "./img4.jpg">
+            <img src = "./img5.jpg">
+            <img src = "./img6.jpg">
+            <img src = "./img7.jpg">
+            <img src = "./img8.jpg"> -->
+            {% for image in images %}
+                <img src = '{{ image.image.url }}' />
+            {% endfor %}
+        </div>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+          <span class="close">&times;</span>
+          <img class="modal-content" id="img01">
+          <div id="caption"></div>
+        </div>
+    </div>
+    <script src = "{% static 'js/main.js' %}"></script>
+</body>
+</html>
+<!-- <html>
+	<head>
+		<title>Image Annotation</title>
+
+	</head>
+	<body>
+		<div class = "container">
+			<div>
+				<form method = "POST" action = "{% url 'image_list' %}">{% csrf_token %}
+					{{ form.as_p }}
+					<input type="submit" class= "btn btn-success" value="Submit">
+				</form>
+			</div>
+			{% for image in images %}
+				<img src = '{{ image.image.url }}' />
+			{% endfor %}
+		</div>
+	</body>
+</html> -->

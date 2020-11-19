@@ -1,0 +1,67 @@
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>ThumbGallery</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="{% url 'image_list' %}">Photo Gallery</a>
+	    </div>
+	    <ul class="nav navbar-nav">
+	      <li><a href="{% url 'image_list' %}">Home</a></li>
+	      <li class="active"><a href="{% url 'insert_picture' %}">Upload</a></li>
+	    </ul>
+	  </div>
+	</nav>
+	<br>
+	<br>
+	<div class = "UploadForm container">
+		<form style = "color:white" method = "POST" enctype="multipart/form-data" 
+		action = "{% url 'insert_picture' %}">
+		{% csrf_token %}
+			<div class="form-group">
+				<label for="image_file">Upload Image File:</label>
+				<input type = "file" class="form-control" id="image_file" name = 'image_file'/>
+			</div>
+			<!-- <div class="form-group">
+				<label for="pwd">Password:</label>
+				<input type="password" class="form-control" id="pwd">
+			</div>
+			<div class="checkbox">
+				<label><input type="checkbox"> Remember me</label>
+			</div> -->
+			<input type = "submit" class="btn btn-default" value = "Submit">
+			<!-- <button type="submit" class="btn btn-default">Submit</button> -->
+		</form>
+	</div>
+</body>
+</html>
+<!-- <html>
+	<head>
+		<title>Image Annotation</title>
+	</head>
+	<body>
+		<form method = "POST" enctype="multipart/form-data" action = "{% url 'insert_picture' %}">
+		{% csrf_token %}
+			<input type = "file" name = 'image_file'/>
+			<input type = "submit" value = "Submit">
+		</form>
+	</body>
+</html> -->
