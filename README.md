@@ -1,4 +1,4 @@
-# Image-Gallery-with-Content-Based-Image-Retrieval
+# Image gallery with content based image retrieval
 An Image gallery web application which allows retrieving images by specifying objects or object relationships.
 
 Used implementation of STA with VTranse from [1] to implement the visual relationship aspect of the image tagging algorithm
